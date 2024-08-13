@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasarela de Películas</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="recursos/css/css.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+</head>
+
+<body>
+
+    <!--NAVEGADOR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="https://pollitotv.com/wp-content/uploads/2024/08/cropped-pollitotu.png" alt="Logo">
+        </a>
+        <div class="dropdown user-menu ml-3">
+            <button class="btn btn-outline-secondary" type="button"><i class="fa-solid fa-bookmark"></i></button>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><i class="fas fa-home"></i> Inicio</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><i class="fa-solid fa-tv"></i> Series</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><i class="fa-solid fa-film"></i> Películas</a>
+                </li>
+            </ul>
+
+            <div class="dropdown user-menu ml-3">
+                <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="dropdown user-menu ml-3">
+                <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i> Usuario
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#"><i class="fas fa-user-circle"></i> Mi Perfil</a>
+                    <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MENÚ FIJO EN LA PARTE INFERIOR PARA MÓVILES -->
+    <div class="mobile-nav">
+        <a href="#"><i class="fas fa-home"></i></a>
+        <a href="#"><i class="fa-solid fa-tv"></i> </a>
+        <a href="#"><i class="fas fa-search"></i> </a>
+        <a href="#"><i class="fa-solid fa-film"></i> </a>
+        <a href="#"><i class="fas fa-user"></i> </a>
+    </div>
+
+
+    <!-- SLIDER HOME -->
+
+    <div id="movieSeriesSlider" class="carousel slide" data-ride="carousel" data-interval="2500">
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="background-image: url('https://image.tmdb.org/t/p/original/o3i6AfTcWAuNvzAUV3q5lOmi6Gx.jpg');">
+                <div class="carousel-caption">
+                    <a href="#" class="titulo-slider">
+                        <h5>Título de la Película 1</h5>
+                    </a>
+                    <div class="info">
+                        <span><i class="fas fa-star"></i> 8.5</span>
+                        <span><i class="fas fa-calendar-alt"></i> 2024</span>
+                        <span><i class="fas fa-video"></i> HD</span>
+                    </div>
+                    <a href="#" class="btn btn-primary"><i class="fas fa-play"></i> Ver Película</a>
+                </div>
+                <div class="video-container">
+                    <video></video>
+                </div>
+            </div>
+            <div class="carousel-item" style="background-image: url('https://image.tmdb.org/t/p/original/10mvZdPGxwZcPcmkJYtuyiIYvY.jpg');">
+                <div class="carousel-caption">
+                    <a href="#" class="titulo-slider">
+                        <h5>Título de la Película 2</h5>
+                    </a>
+                    <div class="info">
+                        <span><i class="fas fa-star"></i> 7.9</span>
+                        <span><i class="fas fa-calendar-alt"></i> 2023</span>
+                        <span><i class="fas fa-video"></i> 4K</span>
+                    </div>
+                    <a href="#" class="btn btn-primary"><i class="fas fa-play"></i> Ver Película</a>
+                </div>
+            </div>
+            <div class="carousel-item" style="background-image: url('https://image.tmdb.org/t/p/original/6kqofCrSkuVlRYw2pHkwvUX5BdS.jpg');">
+                <div class="carousel-caption">
+                    <a href="#" class="titulo-slider">
+                        <h5>Título de la Película 3</h5>
+                    </a>
+                    <div class="info">
+                        <span><i class="fas fa-star"></i> 9.0</span>
+                        <span><i class="fas fa-calendar-alt"></i> 2022</span>
+                        <span><i class="fas fa-video"></i> Full HD</span>
+                    </div>
+                    <a href="#" class="btn btn-primary"><i class="fas fa-play"></i> Ver Película</a>
+                </div>
+            </div>
+        </div>
+        <!-- Indicadores -->
+        <ol class="carousel-indicators">
+            <li data-target="#movieSeriesSlider" data-slide-to="0" class="active"></li>
+            <li data-target="#movieSeriesSlider" data-slide-to="1"></li>
+            <li data-target="#movieSeriesSlider" data-slide-to="2"></li>
+        </ol>
+    </div>
+
+
+    <!-- CONTINUAR VIENDO -->
+
+    <div class="lista-contenido">
+        <div class="titulo-container">
+            <h5 class="titulo-session">Continuar viendo</h5>
+        </div>
+
+        <!-- Nueva pasarela con imágenes de 200x300 px -->
+        <div class="destok-slider">
+            <div class="poster">
+                <div class="label">t1 e10</div>
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/7sqFEDDmK1hG5m92upolcfQxy7R.jpg" alt="Película 1">
+                </a>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 70%;"></div>
+                </div>
+            </div>
+            <div class="poster">
+                <div class="label">t1 e10</div>
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/gHJhN9AJV4PmJ7YpLFa9ldDWuG8.jpg" alt="Película 2">
+                </a>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 40%;"></div>
+                </div>
+            </div>
+            <!-- Repite para los otros posters -->
+        </div>
+    </div>
+
+    <!-- TOP 10 -->
+
+    <div class="lista-contenido-top">
+        <div class="titulo-container">
+            <h5 class="titulo-session">TOP POLLITOTV</h5>
+        </div>
+
+        <div class="pasarela-peliculas-top">
+            <div class="poster-top">
+                <div class="top-home">1</div>
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/sG3bHZWCMOZwhUq71WbPG9Vrrwc.jpg" alt="Película 1">
+                </a>
+            </div>
+            <div class="poster-top">
+                <div class="top-home">2</div>
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/8MaxftF69sEAAD5673vTjIl8yT3.jpg" alt="Película 2">
+                </a>
+            </div>
+            <div class="poster-top">
+                <div class="top-home">3</div>
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/sG3bHZWCMOZwhUq71WbPG9Vrrwc.jpg" alt="Película 1">
+                </a>
+            </div>
+            <div class="poster-top">
+                <div class="top-home">4</div>
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/8MaxftF69sEAAD5673vTjIl8yT3.jpg" alt="Película 2">
+                </a>
+            </div>
+            <div class="poster-top">
+                <div class="top-home">5</div>
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/sG3bHZWCMOZwhUq71WbPG9Vrrwc.jpg" alt="Película 1">
+                </a>
+            </div>
+            <div class="poster-top">
+                <div class="top-home">6</div>
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/8MaxftF69sEAAD5673vTjIl8yT3.jpg" alt="Película 2">
+                </a>
+            </div>
+            <div class="poster-top">
+                <div class="top-home">7</div>
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/sG3bHZWCMOZwhUq71WbPG9Vrrwc.jpg" alt="Película 1">
+                </a>
+            </div>
+            <div class="poster-top">
+                <div class="top-home">8</div>
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/8MaxftF69sEAAD5673vTjIl8yT3.jpg" alt="Película 2">
+                </a>
+            </div>
+            <div class="poster-top">
+                <div class="top-home">9</div>
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/sG3bHZWCMOZwhUq71WbPG9Vrrwc.jpg" alt="Película 1">
+                </a>
+            </div>
+            <div class="poster-top">
+                <div class="top-home">10</div>
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/8MaxftF69sEAAD5673vTjIl8yT3.jpg" alt="Película 2">
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- PELICULAS -->
+
+    <div class="lista-contenido">
+        <div class="titulo-container">
+            <h5 class="titulo-session">Películas agregadas recientemente</h5>
+            <a href="#" class="btn-ver-mas">Ver más</a>
+
+        </div>
+
+        <div class="pasarela-peliculas">
+
+            <div class="poster">
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/sG3bHZWCMOZwhUq71WbPG9Vrrwc.jpg" alt="Película 1">
+                </a>
+            </div>
+            <div class="poster">
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/8MaxftF69sEAAD5673vTjIl8yT3.jpg" alt="Película 2">
+                </a>
+            </div>
+
+            <div class="poster">
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/sG3bHZWCMOZwhUq71WbPG9Vrrwc.jpg" alt="Película 1">
+                </a>
+            </div>
+            <div class="poster">
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/8MaxftF69sEAAD5673vTjIl8yT3.jpg" alt="Película 2">
+                </a>
+            </div>
+
+            <div class="poster">
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/sG3bHZWCMOZwhUq71WbPG9Vrrwc.jpg" alt="Película 1">
+                </a>
+            </div>
+            <div class="poster">
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/8MaxftF69sEAAD5673vTjIl8yT3.jpg" alt="Película 2">
+                </a>
+            </div>
+
+            <div class="poster">
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/sG3bHZWCMOZwhUq71WbPG9Vrrwc.jpg" alt="Película 1">
+                </a>
+            </div>
+            <div class="poster">
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/8MaxftF69sEAAD5673vTjIl8yT3.jpg" alt="Película 2">
+                </a>
+            </div>
+
+            <div class="poster">
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/sG3bHZWCMOZwhUq71WbPG9Vrrwc.jpg" alt="Película 1">
+                </a>
+            </div>
+            <div class="poster">
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/8MaxftF69sEAAD5673vTjIl8yT3.jpg" alt="Película 2">
+                </a>
+            </div>
+
+            <div class="poster">
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/sG3bHZWCMOZwhUq71WbPG9Vrrwc.jpg" alt="Película 1">
+                </a>
+            </div>
+            <div class="poster">
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/8MaxftF69sEAAD5673vTjIl8yT3.jpg" alt="Película 2">
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- EPISODIOS -->
+
+    <div class="lista-contenido">
+        <div class="titulo-container">
+            <h5 class="titulo-session">Capítulos agregados recientemente</h5>
+            <a href="#" class="btn-ver-mas">Ver más</a>
+        </div>
+
+        <!-- Nueva pasarela con imágenes de 200x300 px -->
+        <div class="destok-slider">
+            <div class="poster">
+                <div class="label">t1 e10</div>
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/7sqFEDDmK1hG5m92upolcfQxy7R.jpg" alt="Película 1">
+                </a>
+
+            </div>
+            <div class="poster">
+                <div class="label">t1 e10</div>
+                <a href="#">
+                    <img src="https://image.tmdb.org/t/p/original/gHJhN9AJV4PmJ7YpLFa9ldDWuG8.jpg" alt="Película 2">
+                </a>
+
+            </div>
+            <!-- Repite para los otros posters -->
+        </div>
+    </div>
+
+
+
+
+
+    <br>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navbar = document.querySelector('.navbar');
+
+            function checkScroll() {
+                if (window.scrollY === 0) {
+                    navbar.classList.add('navbar-transparent');
+                } else {
+                    navbar.classList.remove('navbar-transparent');
+                }
+            }
+
+            // Comprueba el estado de la barra de navegación al cargar la página
+            checkScroll();
+
+            // Comprueba el estado de la barra de navegación cuando se desplaza
+            window.addEventListener('scroll', checkScroll);
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('.pasarela-peliculas').slick({
+                slidesToShow: 7,
+                slidesToScroll: 2,
+                infinite: false,
+                arrows: true,
+                dots: false,
+                responsive: [{
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 4
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 3
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    }
+                ]
+            });
+        });
+        $(document).ready(function() {
+            $('.destok-slider').slick({
+                slidesToShow: 5,
+                slidesToScroll: 2,
+                infinite: false,
+                arrows: false,
+                dots: false,
+                responsive: [{
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 4
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 3
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    }
+                ]
+            });
+        });
+        $(document).ready(function() {
+            $('.pasarela-peliculas-top').slick({
+                slidesToShow: 6,
+                slidesToScroll: 2,
+                infinite: false,
+                arrows: false,
+                dots: false,
+                autoplay: true,  // Activa el desplazamiento automático
+                autoplaySpeed: 2000,  // Tiempo en milisegundos entre deslizamientos
+                responsive: [{
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 4
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 3
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+</body>
+
+</html>

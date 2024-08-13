@@ -1,0 +1,462 @@
+html {
+    overflow: -moz-scrollbars-none; /* Para Firefox */
+    -ms-overflow-style: none; /* Para Internet Explorer y Edge */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Oculta la scrollbar en Chrome, Safari, y Opera */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    /* Fondo negro para el body */
+    color: #fff;
+    /* Color de texto blanco para contraste */
+
+}
+.titulo-slider{
+    text-decoration: none !important; /* Asegura que el subrayado no aparezca al pasar el cursor */
+    color: #fff;
+    font-size: 50px !important;
+    letter-spacing: -1px !important;
+    font-weight: 700 !important;
+}
+
+.navbar {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%) !important;
+    width: 100%;
+    z-index: 100;
+    transition: background-color 0.5s;
+}
+
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+}
+.navbar-brand img {
+    max-height: 80px;
+}
+
+.navbar-nav .nav-item {
+    margin-left: 15px;
+   
+    display: inline-block;
+
+}
+
+.navbar-nav .nav-link,
+.navbar-brand,
+.form-inline .btn,
+.dropdown-item {
+    color: white; /* Cambia el color del texto de los enlaces si es necesario */
+    padding: 0 15px; /* Espaciado entre los elementos de navegación */}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+.navbar.scrolled {
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo negro transparente */
+}
+
+.navbar .navbar-nav {
+    text-align: center;
+    width: 100%;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: white; /* Color de texto blanco */
+}
+
+.btn-outline-secondary {
+    color: white; /* Color del ícono blanco */
+    border-color: white;
+}
+
+.btn-outline-secondary:hover {
+    color: black;
+    background-color: white;
+    border-color: white;
+}
+.search-bar input {
+    border-radius: 20px 0 0 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.search-bar button {
+    border-radius: 0 20px 20px 0;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.8);
+    background-color: transparent;
+}
+
+.dropdown-menu {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: none;
+    min-width: 150px;
+    right: 0;
+    left: auto;
+}
+/* Estilo para los indicadores del carrusel */
+.carousel-indicators {
+    bottom: 20px; /* Ajusta la distancia desde la parte inferior del carrusel */
+}
+
+.carousel-indicators li {
+    background-color: #fff; /* Color de fondo para los indicadores */
+    border-radius: 50%; /* Hacer los indicadores circulares */
+    width: 10px; /* Tamaño de los indicadores */
+    height: 10px; /* Tamaño de los indicadores */
+    border: 1px solid #ccc; /* Opcional: Añadir un borde sutil alrededor de los indicadores */
+}
+
+.carousel-indicators .active {
+    background-color: #007bff; /* Color de fondo para el indicador activo */
+    border-color: #007bff; /* Color del borde para el indicador activo */
+}
+
+.carousel-indicators li {
+    margin: 0 4px; /* Espaciado horizontal entre indicadores */
+}
+.video-container {
+    display: none; /* Ocultar el video por defecto */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 1;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-menu .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: auto;
+}
+
+.carousel-item {
+    height: 650px;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+}
+
+.carousel-item::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.4));
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    z-index: 10;
+    text-align: left;
+    color: white;
+    top: 50%; /* Ajusta el margen superior según necesites */
+    left: 10%; /* Ajusta el margen izquierdo para alinear a la izquierda */
+}
+
+.carousel-caption h5 {
+    font-size: 50px;
+    letter-spacing: -1px;
+    font-weight: 700;
+
+}
+
+.carousel-caption p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.carousel-caption .info {
+    font-size: 14px;
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.carousel-caption .btn {
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
+@media (max-width: 767.98px) {
+    .search-bar {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .search-bar input {
+        border-radius: 20px;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+    .search-bar button {
+        border-radius: 20px;
+        width: 100%;
+    }
+
+    .navbar-nav .nav-item {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .navbar-collapse {
+        background-color: #000;
+        position: absolute;
+        top: 56px;
+        left: 0;
+        right: 0;
+        z-index: 99;
+    }
+}
+.btn-primary {
+    border-radius: 30px; /* Ajusta el valor según el radio deseado */
+}
+
+.btn-primary i {
+    margin-right: 5px; /* Espacio entre el ícono y el texto */
+    font-size: 18px; /* Tamaño del ícono, ajusta según tus necesidades */
+}
+
+
+/* POSTERS */
+
+
+.lista-contenido {
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Contenedor para el título y el botón */
+.titulo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Espacio entre el título y la pasarela de películas */
+}
+
+/* Estilo para el título */
+.titulo-session {
+    margin: 0; /* Elimina el margen por defecto */
+    font-size: 1.25rem; /* Tamaño de la fuente, ajústalo si es necesario */
+}
+
+/* Estilo para el botón "Ver Más" */
+.btn-ver-mas {
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 8px 16px; /* Espaciado interno */
+    text-decoration: none; /* Quitar subrayado del enlace */
+    font-size: 0.875rem; /* Tamaño de la fuente del botón */
+    transition: background-color 0.3s; /* Efecto de transición */
+    display: inline-block; /* Asegura que el enlace tenga el tamaño adecuado */
+    border: none; /* Quitar borde del botón */
+    border-radius: 30px; /* Ajusta el valor según el radio deseado */
+
+}
+
+/* Efecto al pasar el cursor sobre el botón */
+.btn-ver-mas:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el cursor */
+    color: white; /* Color del texto al pasar el cursor */
+    text-decoration: none; /* Asegura que el subrayado no aparezca al pasar el cursor */
+    border-radius: 30px; /* Ajusta el valor según el radio deseado */
+
+}
+
+
+.pasarela-peliculas {
+    display: flex;
+    overflow: hidden;
+    gap: 10px;
+}
+
+.poster {
+    flex: 1 0 auto;
+    position: relative;
+    margin: 0 10px; 
+}
+
+.poster img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.poster a {
+    display: block;
+}
+
+.poster:hover img {
+    transform: scale(1.1);
+}
+/* Estilos para la pasarela de películas */
+
+
+/* Estilos para la nueva pasarela de imágenes de 200x300 px */
+/* Estilos para la nueva pasarela de imágenes de 200x300 px */
+.destok-slider {
+    margin-top: 30px;
+}
+
+.destok-slider .poster {
+    position: relative; /* Necesario para el posicionamiento absoluto de la etiqueta */
+    width: 300px;
+    height: 150px;
+    display: inline-block;
+    margin: 10px;
+    overflow: hidden;
+    border-radius: 5px; /* Opcional, para bordes redondeados */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Opcional, para una sombra sutil */
+}
+
+.destok-slider .poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor */
+    border-radius: 5px; /* Opcional, para bordes redondeados */
+}
+
+/* Estilos para la etiqueta */
+.destok-slider .label {
+    position: absolute;
+    top: 10px; /* Ajusta la posición según lo necesites */
+    left: 10px; /* Ajusta la posición según lo necesites */
+    background-color: #0056b3; /* Fondo negro con opacidad para mejorar la legibilidad */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 10; /* Asegura que la etiqueta esté sobre la imagen */
+}
+
+
+/* Estilos para la barra de progreso */
+.progress-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 8px; /* Altura de la barra de progreso */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo de la barra de progreso */
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #00bfae; /* Color de la barra de progreso */
+}
+
+
+/* Estilos para el menú fijo en la parte inferior */
+.mobile-nav {
+    display: none; /* Ocultar por defecto */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000000;
+    text-align: center;
+    padding: 9px;
+    z-index: 100;
+    display: flex;
+    justify-content: space-around;
+}
+
+.mobile-nav a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobile-nav a i {
+    font-size: 24px;
+}
+
+.mobile-nav a span {
+    font-size: 10px;
+}
+
+/* Mostrar el menú fijo solo en dispositivos móviles */
+@media (max-width: 768px) {
+    .navbar-toggler {
+        display: none; /* Ocultar el botón de menú en móviles */
+    }
+    .mobile-nav {
+        display: flex; /* Mostrar el menú fijo en móviles */
+    }
+}
+
+/* Asegurarse de que el menú no aparezca en pantallas grandes */
+@media (min-width: 769px) {
+    .mobile-nav {
+        display: none; /* Ocultar en pantallas grandes */
+    }
+}
+
+/* top hopme */
+.lista-contenido-top {
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+}
+.pasarela-peliculas-top {
+    display: flex;
+    overflow: hidden;
+    gap: 10px;
+}
+
+.poster-top {
+    flex: 1 0 auto;
+    position: relative;
+    width: 200px;  /* Ancho fijo de 200px */
+    height: 300px; /* Alto fijo de 300px */
+    margin: 0 20px; 
+}
+
+.poster-top img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    filter: brightness(0.7); /* Aplica un filtro oscuro a las imágenes */
+}
+
+.top-home {
+    position: absolute;
+    bottom: -40px; /* Mueve el número hacia abajo y fuera de la imagen */
+    left: -30px; /* Mueve el número hacia la izquierda y fuera de la imagen */
+    font-size: 10em; /* Ajusta el tamaño del número al 70% del original */
+    color: #fff;
+    font-weight: bold;
+    z-index: 2; /* Asegura que el número esté por encima de la imagen */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Añade un pequeño sombreado al número */
+}
