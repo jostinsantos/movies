@@ -117,13 +117,16 @@
         }
 
         .episode-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    border: 1px solid #ccc; /* Borde plomo */
-    padding: 10px; /* Opcional: para agregar espacio interno */
-    border-radius: 4px; /* Opcional: para redondear las esquinas del borde */
-}
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            /* Borde plomo */
+            padding: 10px;
+            /* Opcional: para agregar espacio interno */
+            border-radius: 4px;
+            /* Opcional: para redondear las esquinas del borde */
+        }
 
 
         .episode-item img {
@@ -144,7 +147,6 @@
         .episode-details p {
             margin: 5px 0;
         }
-
     </style>
 </head>
 
@@ -382,28 +384,55 @@
                     </div>
 
                     <!-- Modal footer episodios -->
-<div class="modal-footer-episodes">
-    <div class="d-flex justify-content-between align-items-center">
-        <h5>Episodios</h5>
-        <select name="episodes" id="episode-select" class="form-control w-auto">
-            <option value="1">Episodio 1</option>
-            <option value="2">Episodio 2</option>
-            <option value="3">Episodio 3</option>
-            <!-- Agrega más opciones de episodios aquí -->
-        </select>
-    </div>
-    <div class="episodes-tv">
-        <!-- Información del episodio -->
-        <div class="episode-item">
-            <img src="https://image.tmdb.org/t/p/original/260JYN2n3dTSlOYDGk9KjjJ3pSd.jpg" alt="Portada del episodio" class="img-fluid">
-            <div class="episode-details">
-                <h5>Título del Episodio</h5>
-                <p><strong>Duración:</strong> 45 m</p>
-                <p>Aquí debe estar la descripción del episodio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non libero non mi ullamcorper ornare.</p>
-            </div>
-        </div>
-    </div>
-</div>
+                    <div class="modal-footer-episodes">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5>Episodios</h5>
+                            <select name="episodes" id="episode-select" class="form-control w-auto">
+                                <option value="1">Episodio 1</option>
+                                <option value="2">Episodio 2</option>
+                                <option value="3">Episodio 3</option>
+                                <!-- Agrega más opciones de episodios aquí -->
+                            </select>
+                        </div>
+                        <div class="episodes-tv">
+                            <!-- Información del episodio -->
+                            <div class="episode-item" id="1">
+                                <img src="https://image.tmdb.org/t/p/original/260JYN2n3dTSlOYDGk9KjjJ3pSd.jpg" alt="Portada del episodio" class="img-fluid">
+                                <div class="episode-details">
+                                    <h5>Título del Episodio 1 t1</h5>
+                                    <p><strong>Duración:</strong> 45 m</p>
+                                    <p>Aquí debe estar la descripción del episodio 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non libero non mi ullamcorper ornare.</p>
+                                </div>
+                            </div>
+
+                            <div class="episode-item" id="1">
+                                <img src="https://image.tmdb.org/t/p/original/260JYN2n3dTSlOYDGk9KjjJ3pSd.jpg" alt="Portada del episodio" class="img-fluid">
+                                <div class="episode-details">
+                                    <h5>Título del Episodio 2 t1</h5>
+                                    <p><strong>Duración:</strong> 45 m</p>
+                                    <p>Aquí debe estar la descripción del episodio 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non libero non mi ullamcorper ornare.</p>
+                                </div>
+                            </div>
+
+                            <div class="episode-item" id="2" style="display: none;">
+                                <img src="https://image.tmdb.org/t/p/original/260JYN2n3dTSlOYDGk9KjjJ3pSd.jpg" alt="Portada del episodio" class="img-fluid">
+                                <div class="episode-details">
+                                    <h5>Título del Episodio 2</h5>
+                                    <p><strong>Duración:</strong> 45 m</p>
+                                    <p>Aquí debe estar la descripción del episodio 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non libero non mi ullamcorper ornare.</p>
+                                </div>
+                            </div>
+                            <div class="episode-item" id="3" style="display: none;">
+                                <img src="https://image.tmdb.org/t/p/original/260JYN2n3dTSlOYDGk9KjjJ3pSd.jpg" alt="Portada del episodio" class="img-fluid">
+                                <div class="episode-details">
+                                    <h5>Título del Episodio 3</h5>
+                                    <p><strong>Duración:</strong> 45 m</p>
+                                    <p>Aquí debe estar la descripción del episodio 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non libero non mi ullamcorper ornare.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
 
                 </div>
@@ -419,6 +448,29 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+
+    <!-- script de cambiar cap por temporada   -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const episodeSelect = document.getElementById('episode-select');
+            const episodeItems = document.querySelectorAll('.episode-item');
+
+            episodeSelect.addEventListener('change', function() {
+                const selectedEpisodeId = this.value;
+
+                episodeItems.forEach(item => {
+                    if (item.id === selectedEpisodeId) {
+                        item.style.display = 'flex'; // Cambia a 'flex' o 'block' según el estilo de tu diseño
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
 
     <!-- MODAL PELICULAS  -->
     <script>
