@@ -613,3 +613,27 @@ body {
 .episode-details p {
     margin: 5px 0;
 }
+
+/* ESTILO DEL BOTON DE FULLSCREAM */
+#fullscreen-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000; /* Asegura que el ícono esté por encima de otros elementos */
+}
+
+#fullscreen-icon:hover {
+    background-color: #555;
+}
+
+@media (max-width: 768px) {
+    #fullscreen-icon {
+        display: none;
+    }
+}
+
