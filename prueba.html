@@ -1,37 +1,398 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Botón de Enlace</title>
+    <title>Página</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        .open-link-button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            text-align: center;
-            text-decoration: none;
-            cursor: pointer;
+        body {
+            background-color: black;
+            margin: 0;
+            padding: 0;
         }
 
-        .open-link-button:hover {
-            background-color: #0056b3;
+        .navbar {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.4));
+            z-index: 9999;
+        }
+
+        #iframeContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        #iframeContainer iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            pointer-events: auto;
+        }
+
+        #orientationMessage {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            text-align: center;
+            z-index: 99999;
+            display: none;
+        }
+
+        @media (orientation: portrait) {
+            #orientationMessage {
+                display: flex;
+            }
+        }
+
+        #loader {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            display: none;
+            width: 100px;
+            height: 100px;
+        }
+
+        #loader img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .navbar-buttons .btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .navbar-buttons .btn {
+            width: 50px;
+            height: 50px;
+            padding: 0;
+        }
+
+        .form-select img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        /* Opcional: Ajustar el tamaño del modal */
+        .modal-dialog {
+            max-width: 80%;
+            /* Ancho máximo del modal */
+            margin: 1.75rem auto;
+            /* Espaciado vertical y horizontal */
+        }
+
+        /* Opcional: Ajustar el contenido del modal */
+        .modal-content {
+            border-radius: 0.5rem;
+            /* Borde redondeado */
+        }
+
+         /* Estilo del botón de salir de pantalla completa */
+         #fullscreenExitButton {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            display: none;
+            z-index: 10001;
+        }
+
+        /* Ocultar el contenido cuando está en pantalla completa */
+        body.fullscreen-mode #iframeContainer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+        }
+
+        body.fullscreen-mode .navbar,
+        body.fullscreen-mode .form-select,
+        body.fullscreen-mode .navbar-buttons,
+        body.fullscreen-mode #orientationMessage {
+            display: none;
         }
     </style>
 </head>
+
 <body>
-<a href="javascript:void(0);" onclick="openInNewWindow()" class="open-link-button" style="text-decoration: none; color: inherit; cursor: pointer;">Abrir Enlace</a>
-<a href='javascript:void(0);' onclick='window.close();' class='close-link-button' style='text-decoration: none; color: inherit; cursor: pointer;'>Cerrar Ventana</a>
+
+    <div id="orientationMessage">
+        Por favor, gira tu dispositivo para ver esta página en modo horizontal.
+    </div>
+
+    <div id="loader">
+        <img src="recursos/reload.gif" alt="Cargando...">
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <div class="navbar-brand">
+                <button class="btn btn-outline-light" id="closeButton"><i class="fa-solid fa-x"></i></button>
+            </div>
+            <div class="navbar-buttons ms-auto">
+                <<button class="btn btn-outline-light" id="fullscreenButton">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                    </button>
+
+                    <button class="btn btn-outline-light">
+                        <a href="https://pollitotv.com/" target="_blank" rel="noopener noreferrer"><img src="recursos/icon.png" alt=""></a>
+                    </button>
+                    <button class="btn btn-outline-light"><i class="fa-solid fa-triangle-exclamation"></i></button>
+            </div>
+
+            <div class="ms-auto">
+                <select id="languageSelect" class="form-select" aria-label="Select con opciones">
+                    <option value="latino" data-img="recursos/banderas/lat.npg">Latino</option>
+                    <option value="subtitulado" data-img="recursos/banderas/en.npg">Subtitulado</option>
+                    <option value="japones" data-img="recursos/banderas/jap.npg">Japonés</option>
+                </select>
+            </div>
+            <div class="ms-auto">
+                <select id="iframeSelect" class="form-select" aria-label="Select con opciones">
+                    <!-- Opciones se actualizarán dinámicamente -->
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <div id="iframeContainer">
+        <iframe src="https://vidhidepre.com/v/qiljf2dvq52q" sandbox="allow-same-origin allow-scripts allow-forms allowfullscreen" allowfullscreen></iframe>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered"> <!-- Añadido modal-dialog-centered -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoModalLabel">Reportar Contenido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="">
+                    <div class="modal-body">
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type='submit' class='btn btn-primary btn-agm'>Actualizar Usuario</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <button id="fullscreenExitButton"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></button>
 
 
     <script>
-        function openInNewWindow() {
-            window.open('https://www.ejemplo.com', 'newWindow', 'width=800,height=600,scrollbars=yes');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurar el botón para abrir el modal
+            document.querySelector('.navbar-buttons .btn:last-child').addEventListener('click', function() {
+                const modal = new bootstrap.Modal(document.getElementById('infoModal'));
+                modal.show();
+            });
+
+            // Configurar el botón para activar pantalla completa
+            document.getElementById('fullscreenButton').addEventListener('click', function() {
+                if (document.fullscreenElement) {
+                    // Si ya está en pantalla completa, salir del modo pantalla completa
+                    document.exitFullscreen();
+                    document.getElementById('fullscreenExitButton').style.display = 'none';
+                    document.body.classList.remove('fullscreen-mode');
+                } else {
+                    // Si no está en pantalla completa, solicitar pantalla completa
+                    document.documentElement.requestFullscreen();
+                    document.body.classList.add('fullscreen-mode');
+                }
+            });
+
+            // Configurar el botón para salir del modo pantalla completa
+            document.getElementById('fullscreenExitButton').addEventListener('click', function() {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                }
+                this.style.display = 'none'; // Ocultar el botón después de salir del modo pantalla completa
+                document.body.classList.remove('fullscreen-mode');
+            });
+
+            // Mostrar el botón de salir de pantalla completa y ocultarlo después de 2 segundos de inactividad
+            let timeout;
+            document.addEventListener('fullscreenchange', function() {
+                if (document.fullscreenElement) {
+                    document.getElementById('fullscreenExitButton').style.display = 'block';
+                    clearTimeout(timeout);
+                    document.addEventListener('mousemove', resetTimeout);
+                    document.addEventListener('keydown', resetTimeout);
+                } else {
+                    document.getElementById('fullscreenExitButton').style.display = 'none';
+                    document.body.classList.remove('fullscreen-mode');
+                }
+            });
+
+           
+        });
+    </script>
+    <!-- Datos de opciones de iframe -->
+    <script id="iframeOptions" type="application/json">
+        {
+            "latino": [{
+                    "id": "latino1",
+                    "value": "https://vidhidepre.com/v/qiljf2dvq52q",
+                    "text": "Latino Opción 1"
+                },
+                {
+                    "id": "latino2",
+                    "value": "https://another-latino-url.com",
+                    "text": "Latino Opción 2"
+                }
+            ],
+            "subtitulado": [{
+                    "id": "subtitulado1",
+                    "value": "https://wishonly.site/e/6qxp2lzqtgs9",
+                    "text": "Subtitulado Opción 1"
+                },
+                {
+                    "id": "subtitulado2",
+                    "value": "https://another-subtitulado-url.com",
+                    "text": "Subtitulado Opción 2"
+                }
+            ],
+            "japones": [{
+                    "id": "japones1",
+                    "value": "https://wishonly.site/e/6qxp2lzqtgs9",
+                    "text": "Japonés Opción 1"
+                },
+                {
+                    "id": "japones2",
+                    "value": "https://another-japones-url.com",
+                    "text": "Japonés Opción 2"
+                }
+            ]
         }
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageSelect = document.getElementById('languageSelect');
+            const iframeSelect = document.getElementById('iframeSelect');
+            const iframeContainer = document.getElementById('iframeContainer');
+            const orientationMessage = document.getElementById('orientationMessage');
+            const loader = document.getElementById('loader');
+
+            // Obtener datos del script JSON
+            const iframeOptions = JSON.parse(document.getElementById('iframeOptions').textContent);
+
+            function showLoader() {
+                loader.style.display = 'block';
+            }
+
+            function hideLoader() {
+                loader.style.display = 'none';
+            }
+
+            function loadIframe(src) {
+                showLoader();
+                iframeContainer.innerHTML = `<iframe src="${src}" sandbox="allow-same-origin allow-scripts allow-forms" allowfullscreen></iframe>`;
+                iframeContainer.querySelector('iframe').addEventListener('load', hideLoader);
+            }
+
+            function updateIframeSelectOptions(language) {
+                const options = iframeOptions[language] || [];
+                iframeSelect.innerHTML = options.map(option => `<option value="${option.value}" id="${option.id}">${option.text}</option>`).join('');
+                loadIframe(iframeSelect.value);
+            }
+
+            languageSelect.addEventListener('change', function() {
+                updateIframeSelectOptions(this.value);
+            });
+
+            iframeSelect.addEventListener('change', function() {
+                loadIframe(this.value);
+            });
+
+            function checkOrientation() {
+                if (window.matchMedia("(orientation: portrait)").matches) {
+                    orientationMessage.style.display = 'flex';
+                } else {
+                    orientationMessage.style.display = 'none';
+                }
+            }
+
+            checkOrientation();
+
+            window.addEventListener('resize', checkOrientation);
+
+            document.addEventListener('contextmenu', function(event) {
+                event.preventDefault();
+            });
+
+            const devtools = {
+                open: false,
+                init() {
+                    const threshold = 160;
+                    const check = () => {
+                        const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+                        const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+                        this.open = widthThreshold || heightThreshold;
+                        if (this.open) {
+                            window.location.href = 'https://pollitotv.com/';
+                        }
+                    };
+                    setInterval(check, 1000);
+                }
+            };
+
+            devtools.init();
+
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I') || (event.ctrlKey && event.key === 'u')) {
+                    event.preventDefault();
+                }
+            });
+
+            updateIframeSelectOptions(languageSelect.value);
+
+            function windowCloseWarning() {
+                if (!window.opener) {
+                    alert('Esta ventana solo se puede cerrar si fue abierta por un script.');
+                } else {
+                    window.close();
+                }
+            }
+
+            document.getElementById('closeButton').addEventListener('click', function() {
+                windowCloseWarning();
+            });
+        });
+    </script>
 </body>
+
 </html>
